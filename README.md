@@ -13,3 +13,6 @@ run
 - pip install pipenv
 - pipenv install
 - pipenv run python bot.py <-- this command will start your chat bot 
+
+
+My twitch channel please come say hi :) https://www.twitch.tv/par_2d2

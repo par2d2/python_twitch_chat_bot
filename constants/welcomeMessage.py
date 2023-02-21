@@ -9,7 +9,24 @@ user_welcome_message = {
     'somehowalive': '@somehowalive what can I say thank you dude, you saved my Valheim server legend',
     'abrokensleep': '@abrokensleep good to see you! The creator of the broken brawls and an awesome artist!',
     'lindafps_': '@lindafps GOATED overwatch player big loves.',
-    'par_2d2': 'Bot is live',
     'threelegzz': 'Show some love for threelegzz, My homie from demon souls!'
 }
 ## above are my homies please check them out
+
+hello_message = [
+    'Hello {user_name}',
+    'Hi {user_name}',
+    'Hello there {user_name}',
+    'OMG it\'s {user_name}',
+    'hey {user_name}',
+    '{user_name} Hey dude',
+]
+
+welcome_message = [
+    ' welcome back to the chat.',
+    ' you\'ve come back I missed you',
+    ' good to see you again',
+    ' we\'re so happy to have you back',
+    ' it\'s great to have you back in the chat!',
+    ' thank you for joining us again',
+]

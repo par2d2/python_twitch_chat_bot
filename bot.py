@@ -1,10 +1,15 @@
 import os
-import welcomeMessage
+import sys
+import random
 from twitchio.ext import commands
+
+sys.path.insert(1, './constants/')
+from welcomeMessage import  user_welcome_message, hello_message, welcome_message
+from botList import known_bot_list
 
 async def get_user_message(user_name):
     try:
-        return welcomeMessage.user_welcome_message[user_name]
+        return user_welcome_message[user_name]
     except KeyError:
         return ''
 
@@ -19,21 +24,22 @@ class Bot(commands.Bot):
         print(f'Chat bot is up and running.')
 
     async def event_message(self, message):
-        if message.echo or message.author.name.lower() == 'streamelements':
+        user_name = message.author.name
+        if message.echo or user_name.lower() in known_bot_list:
             return
 
-        user_name = message.author.name
-
         if message.first:
-            await message.channel.send("Hey " + user_name + " Welcome to the Channel and the Chat. ")
             self.chatters.append(user_name)
+            await message.channel.send("Hey " + user_name + " Welcome to the Channel and the Chat. First time chatter")
         elif await self.is_first_chat_of_the_day(user_name):
             self.chatters.append(user_name)
             return_message = await get_user_message(user_name)
             if return_message:
-                await message.channel.send(return_message + ' https://www.twitch.tv/' + user_name)
+                await message.channel.send(return_message + ' ' + os.environ['TWITCH_URL'] + user_name)
             else:
-                await message.channel.send("Hey " + user_name + " Welcome back to the chat." + ' https://www.twitch.tv/' + user_name)
+                first_part_of_message = random.choice(hello_message).replace('{user_name}', user_name)
+                second_part_of_message = random.choice(welcome_message)
+                await message.channel.send(first_part_of_message + second_part_of_message + ' ' + os.environ['TWITCH_URL'] + user_name)
                 
         await self.handle_commands(message)
 
