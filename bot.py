@@ -29,7 +29,6 @@ class Bot(commands.Bot):
             self.chatters.append(user_name)
         elif await self.is_first_chat_of_the_day(user_name):
             self.chatters.append(user_name)
-            print(user_name)
             return_message = await get_user_message(user_name)
             if return_message:
                 await message.channel.send(return_message + ' https://www.twitch.tv/' + user_name)
@@ -48,7 +47,6 @@ class Bot(commands.Bot):
         await ctx.send("Xbox: Par2d2, Playstation: Par_2d2, Chess.com: par_2_d_2, steam: parfoo")
 
     async def is_first_chat_of_the_day(self, user_name):
-        print(self.chatters)
         if user_name in self.chatters:
             return False
         return True
