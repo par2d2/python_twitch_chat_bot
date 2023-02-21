@@ -1,6 +1,6 @@
 ## 21/02/2023
 
-# version
+# version 1.0.2
 
 - moved messages to contants folder
 - added twitch url to env file
